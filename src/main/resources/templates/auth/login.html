@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="blocks/headLinks :: head"></div>
+    <title>Вход</title>
+</head>
+<body>
+    <form method="post" action="/process_login">
+        <div class="container border border-3 rounded-2 bg-light col-lg-5 col-xs-9 pt-3 mt-5 pb-2">
+
+            <h4>Вход</h4>
+            <hr>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <label for="username" class="form-label">Введите логин:</label>
+            <input type="text" name="username" class="form-control" id="username">
+            <br>
+            <label for="password" class="form-label">Введите пароль:</label>
+            <input type="password" name="password" class="form-control" id="password">
+            <br>
+
+            <div th:if="${param.error}" class="text-danger">
+                Неправильные имя или пароль
+            </div>
+            <input type="submit" class=" btn btn-outline-primary pe-4 ps-4" value="Войти">
+        </div>
+    </form>
+    <a class="link-primary text-center mt-3" th:href="@{/auth/registration}">Зарегистрироваться</a>
+
+</body>
+</html>

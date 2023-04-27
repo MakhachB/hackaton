@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="blocks/headLinks :: head"></div>
+    <title>Моя страница</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+
+    <div th:if="${user}" class="container border border-3 rounded-2 bg-light col-lg-6 col-xs-9 pt-3 mt-5">
+        <h4>Профиль</h4>
+        <hr>
+
+        <p th:text="${'Имя: ' + user.firstName + ' ' + user.lastName}">f</p>
+        <p th:text="${'Логин: ' + user.login}">sf</p>
+        <p th:text="${'Email: ' + user.email}">s</p>
+        <p th:text="${'Дата рождения: ' + user.yearOfBirth}"></p>
+        <p th:text="${'Ваш статус: ' + role}"></p>
+        <br>
+        <div class="row mb-2 justify-content-between">
+            <form th:method="GET" th:action="@{/user/edit}" class="justify-content-center col-xl-4 col-sm-5 mb-2">
+                <input class="btn btn-outline-success col-12" type="submit" value="Редактировать">
+            </form>
+
+            <form th:method="POST" th:action="@{/logout}" class="justify-content-center col-xl-4 col-sm-5 mb-2">
+                <input class="btn btn-outline-danger col-12" type="submit" value="Выйти с аккаунта">
+            </form>
+        </div>
+
+
+    </div>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

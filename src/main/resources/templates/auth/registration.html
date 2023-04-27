@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="blocks/headLinks :: head"></div>
+    <title>Регистрация</title>
+
+</head>
+<body>
+<form id="main" th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+    <div class="container border border-3 rounded-2 bg-light col-lg-5 col-xs-9 pt-3 mt-5 pb-2">
+
+
+        <h4>Регистрация</h4>
+        <hr>
+
+        <label class="form-label" for="firstName">Введите имя:</label>
+        <input class="form-control" type="text" th:field="*{firstName}" id="firstName">
+        <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FIRSTNAME ERROR
+        </div>
+        <br>
+        <label class="form-label" for="lastName">Введите фамилию:</label>
+        <input class="form-control" type="text" th:field="*{lastName}" id="lastName">
+        <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LASTNAME ERROR</div>
+        <br>
+        <label class="form-label" for="login">Введите логин (Изменить нельзя):</label>
+        <input class="form-control" type="text" th:field="*{login}" id="login">
+        <div class="text-danger" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">LOGIN ERROR</div>
+        <br>
+        <label class="form-label" for="email">Введите email (Изменить нельзя):</label>
+        <input class="form-control" type="email" th:field="*{email}" id="email">
+        <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">EMAIL ERROR</div>
+        <br>
+        <label class="form-label" for="date">Введите дату рождения (01/01/2000):</label>
+        <input class="form-control" type="date" th:field="*{yearOfBirth}" id="date">
+        <div class="text-danger" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}">DATE ERROR</div>
+        <p class="text-danger" id="dateText"></p>
+        <br>
+        <p class="form-label">Вы :</p>
+        <input type="radio" checked th:name="role" id="student" value="student">
+        <label class="form-label" for="student">Студент</label>
+        <br>
+        <input type="radio" th:name="role" id="teacher" value="teacher">
+        <label class="form-label" for="teacher">Учитель</label>
+        <br>
+        <label class="form-label" for="password">Придумайте пароль (от 5 до 30 символов) :</label>
+        <input class="form-control" type="password" th:field="*{password}" id="password">
+        <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">PASSWORD ERROR</div>
+        <br>
+        <input id="submitButton" class="btn btn-outline-primary" type="submit" value="Зарегистрироваться">
+        <br>
+    </div>
+</form>
+<a class="link-primary text-center mt-3 pb-4" th:href="@{/auth/login}">Уже есть аккаунт?</a>
+
+<script src="../../static/js/formValidator.js" th:src="@{/js/dateValidator.js}"></script>
+</body>
+</html>

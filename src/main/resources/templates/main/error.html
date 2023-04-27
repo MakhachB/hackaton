@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="blocks/headLinks :: head"></div>
+    <title>StudTesting</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main>
+    <div class="text-center mt-5">
+        <p class="text-danger">Извините, введенный вами запрос некорректен</p>
+    </div>
+</main>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
